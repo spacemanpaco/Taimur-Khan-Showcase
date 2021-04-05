@@ -34,7 +34,7 @@ The configuration details of each machine may be found below.
 | Web-1      | DVWA Server | 10.0.0.5   | Linux            |
 | Web-2      | DVWA Server | 10.0.0.6   | Linux            |
 | Web-3      | DVWA Server | 10.0.0.7   | Linux            |
-| ELK-VM     | ELK Stack   | 10.1.0.4   | Linux            |
+| ELK-Server | ELK Stack   | 10.1.0.4   | Linux            |
 
 
 ### Access Policies
@@ -55,7 +55,7 @@ A summary of the access policies in place can be found in the table below.
 | Web-1                 | No                  | 10.0.0.4             |
 | Web-2                 | No                  | 10.0.0.4             |
 | Web-3                 | No                  | 10.0.0.4             |
-| Elk-VM                | No                  | 10.0.0.4             |
+| ELK-Server            | No                  | 10.0.0.4             |
 
 
 ### Elk Configuration
@@ -96,12 +96,24 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 SSH into the control node and follow the steps below:
 - Copy the install-elk.yml file to /etc/ansible
-- Update the hosts file to include IP address of ELK Server, the YAML scripts will specify which servers to run ELK on
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Update the hosts file to include private IP address of ELK Server, the YAML scripts will specify which servers to run ELK on
+- Run the playbook, and navigate to 168.62.202.196:5601/app/kibana to check that the installation worked as expected
+- The IP is of the ELK server and will only accept connections from port 5601 as specified
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+### Commands to Install Repository and ELK
+
+git clone https://github.com/spacemanpaco/Taimur-Khan-Showcase.git - Install Repository on your machine
+
+cp install-elk.yml /etc/ansible - Copies Install Elk file into ansible directory
+
+nano hosts - Update file to include private IP address of ELK-Server to specify script to run on this server
+
+ansible-playbook install-elk.yml - Run Playbook on specified ELK server
+
+curl http://168.62.202.196:5601/app/kibana
+
+Make sure VM that needs ELK installed on it is running to see an output. 
+
+
+
